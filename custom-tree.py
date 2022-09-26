@@ -205,12 +205,13 @@ if __name__ == '__main__':
             '4': {'parent': {'2': edge42}, 'children': {}, 'val': val4},
             '5': {'parent': {'2': edge52}, 'children': {}, 'val': val5},
             }
-
-    edges = get_edges(tree, '5')
+    # The function also works if we choose node_id to be the current root
+    node_id = '5'
+    edges = get_edges(tree, node_id)
     edges[0]['backward'] = 'edge21new'
     edges[1]['backward'] = 'edge52new'
-    tree_update, tree_old = update_tree(tree, '5', edges)
-    tree_change, tree_update = change_root(tree_update, '5')
+    tree_update, tree_old = update_tree(tree, node_id, edges)
+    tree_change, tree_update = change_root(tree_update, node_id)
     tree_layout = get_tree_layout(tree_change)
     print('Updated tree structure (new edges and root changed): \n{}'.format(
         json.dumps(tree_change, indent=4)))
