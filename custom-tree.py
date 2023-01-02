@@ -6,7 +6,7 @@ from copy import deepcopy
 
     The custom tree is defined as a dictionary.
     Each entry of the dictionary is a node of the tree.
-    Each node is itself a dictionary with two keys:
+    Each node is itself a dictionary with three keys:
     * parent: dictionary of the parents of the node.
     * children: dictionary of the children of the node.
     * value: the value of the node.
@@ -205,6 +205,9 @@ if __name__ == '__main__':
             '4': {'parent': {'2': edge42}, 'children': {}, 'val': val4},
             '5': {'parent': {'2': edge52}, 'children': {}, 'val': val5},
             }
+    tree_layout_old = get_tree_layout(tree)
+    print('\n \n Old tree layout: \n')
+    tree_layout_old.show(line_type='ascii-em')    
     # The function also works if we choose node_id to be the current root
     node_id = '5'
     edges = get_edges(tree, node_id)
@@ -213,7 +216,7 @@ if __name__ == '__main__':
     tree_update, tree_old = update_tree(tree, node_id, edges)
     tree_change, tree_update = change_root(tree_update, node_id)
     tree_layout = get_tree_layout(tree_change)
-    print('Updated tree structure (new edges and root changed): \n{}'.format(
-        json.dumps(tree_change, indent=4)))
+    #print('Updated tree structure (new edges and root changed): \n{}'.format(
+    #    json.dumps(tree_change, indent=4)))
     print('\n \n Updated tree layout: \n')
     tree_layout.show(line_type='ascii-em')
